@@ -17,11 +17,11 @@ node* insertbst(node* root,int x)
     }
     else
     {
-        if(x<root->data)
+        if(x<root->data) //if data is small from root data insert at the left sub tree
         {
             root->left=insertbst(root->left,x);
         }
-        else if(x>root->data)
+        else if(x>root->data) //if data is larger than root data inserting at the right sub tree
         {
             root->right=insertbst(root->right,x);
         }
@@ -58,40 +58,45 @@ node* deletebst(node* root,int x)
 {
     if(root==NULL)
     {
-        printf("\nelement not found\n");
+        printf("\n%d not found\n",x);
     }
-    else if(x<root->data)
+    else if(x<root->data)  //searching at the left sub tree
     {
         root->left=deletebst(root->left,x);
     }
-    else if(x>root->data)
+    else if(x>root->data)  //serching at the right sub tree
     {
         root->right=deletebst(root->right,x);
     }
     else
     {
+        //deletion of node having right child only
         if(root->left==NULL && root->right!=NULL)
         {
             node* temp=root;
             root=root->right;
             free(temp);
         }
+        //deletion of node having left child only
         else if(root->left!=NULL && root->right==NULL)
         {
             node* temp=root;
             root=root->left;
             free(temp);
         }
+        //deletion of leaf node
         else if(root->left==NULL && root->right==NULL)
         {
             free(root);
             return NULL;
         }
+        //deletion of node having two child
         else
         {
-            node* temp;
-            temp=findmin(root->right);
+            node* temp=findmin(root->right);
+            //exchnge the root value with minimum value of right sub tree
             root->data=temp->data;
+            //deleting the minimum value of right sub tree
             root->right=deletebst(root->right,temp->data);
         }
     }
@@ -101,21 +106,18 @@ node* searchbst(node* root,int x)
 {
     if(root==NULL)
     {
-        printf("\nelement not found\n");
-    }
-    else if(root->data==x)
-    {
-        return root;
+        return NULL;
     }
     else if(x<root->data)
     {
         return searchbst(root->left,x);
     }
-    else
+    else if(x>root->data)
     {
         return searchbst(root->right,x);
     }
-    return root;
+    else
+        return root;
 }
 void pretvl(node* root)
 {
