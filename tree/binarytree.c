@@ -73,7 +73,7 @@ int main()
     printf("\n");
     while(1)
     {
-        printf("enter for 1 preorder traversal :\nenter 2 for inorder traversal :\nenter 3 for postorder traversal :\nenter 4 to exit : ");
+        printf("enter 1 for preorder traversal :\nenter 2 for inorder traversal :\nenter 3 for postorder traversal :\nenter 4 to exit : ");
         scanf("%d",&op);
         switch(op)
         {
