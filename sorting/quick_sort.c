@@ -1,15 +1,17 @@
 #include<stdio.h>
-int scanarr(int arr[])
+#include<stdlib.h>
+int* scanarr(int* n)
 {
-    int n,i;
+    int i;
     printf("enter the array size : ");
-    scanf("%d",&n);
+    scanf("%d",n);
+    int* arr=(int*)malloc((*n)*sizeof(int));
     printf("enter the array elements : ");
-    for(i=0;i<n;i++)
+    for(i=0;i<*n;i++)
     {
         scanf("%d",&arr[i]);
     }
-    return n;
+    return arr;
 }
 void display(int arr[],int n)
 {
@@ -66,8 +68,8 @@ void quicks(int arr[],int low,int high)
 }
 int main()
 {
-    int n,arr[100];
-    n=scanarr(arr);
+    int n;
+    int* arr=scanarr(&n);
     printf("array elements before sorting : ");
     display(arr,n);
     quicks(arr,0,n-1);
