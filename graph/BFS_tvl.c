@@ -118,12 +118,6 @@ void bfstvl(int em[][2],int adjm[][size],int v)
                 enque(i);
                 visit[i]=1;
             }
-            if(adjm[i][node]==1 && visit[i]==0)
-            {
-                printf("%d ",i);
-                enque(i);
-                visit[i]=1;
-            }
         }
     }
 }
