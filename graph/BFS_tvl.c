@@ -128,6 +128,7 @@ int main()
     edge=scan(em);
     int adjm[size][size],v;
     v=findadjm(em,adjm,edge);
+    printf("BFS traversal : ");
     bfstvl(em,adjm,v);
     printf("\n");
     return 0;
