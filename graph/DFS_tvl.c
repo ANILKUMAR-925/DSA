@@ -48,6 +48,7 @@ int findadjm(int em[][2],int adjm[][size],int edge)
 }
 void dfstvl(int adjm[][size],int visit[],int v,int node)
 {
+    //visiting and printing all node connected to first node
     int i;
     printf("%d ",node);
     visit[node]=1;

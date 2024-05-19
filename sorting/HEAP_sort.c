@@ -25,8 +25,9 @@ void display(int* arr,int n)
 void heapify(int* arr,int n,int parent)
 {
     int lc,rc,largest=parent;
-    lc=2*parent+1;
-    rc=2*parent+2;
+    lc=2*parent+1;//left child
+    rc=2*parent+2;//right child
+    //find largest among the child
     if(arr[largest]<arr[lc] && lc<n)
     {
         largest=lc;
@@ -37,6 +38,7 @@ void heapify(int* arr,int n,int parent)
     }
     if(parent!=largest)
     {
+        //swapping largest child with parent
         int temp=arr[largest];
         arr[largest]=arr[parent];
         arr[parent]=temp;
@@ -67,5 +69,6 @@ int main()
     heap_sort(arr,n);
     printf("array elements after sorting : ");
     display(arr,n);
+    printf("\n");
     return 0;
 }
