@@ -42,9 +42,70 @@ int findadjm(int em[][2],int adjm[][size],int edge)
         int from=em[i][0];
         int to=em[i][1];
         adjm[from][to]=1;
-        adjm[to][from]=1;
     }
     return v;
+}
+void multm(int mat1[][size],int mat2[][size],int resm[][size],int v)
+{
+    int i,j,k;
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            resm[i][j]=0;
+            for(k=0;k<v;k++)
+            {
+                resm[i][j]+=mat1[i][k]*mat2[k][j];
+            }
+        }
+    }
+}
+void addm(int mat1[][size],int mat2[][size],int resm[][size],int v)
+{
+    int i,j;
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            resm[i][j]=mat1[i][j]+mat2[i][j];
+        }
+    }
+}
+void findpathm(int adjm[][size],int pathm[][size],int v)
+{
+    int addres[size][size],mulres[size][size];
+    int i,j;
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            addres[i][j]=mulres[i][j]=adjm[i][j];
+        }
+    }
+    for(i=2;i<=v;i++)
+    {
+        int add[size][size],mult[size][size];
+        for(i=0;i<v;i++)
+        {
+            for(j=0;j<v;j++)
+            {
+                add[i][j]=addres[i][j];
+                mult[i][j]=mulres[i][j];
+            }
+        }
+        multm(mult,adjm,mulres,v);
+        addm(add,mulres,addres,v);
+    }
+    for(i=0;i<v;i++)
+    {
+        for(j=0;j<v;j++)
+        {
+            if(addres[i][j]!=0)
+                pathm[i][j]=1;
+            else
+                pathm[i][j]=0;
+        }
+    }
 }
 int main()
 {

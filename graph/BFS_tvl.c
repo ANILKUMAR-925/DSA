@@ -88,7 +88,6 @@ int findadjm(int em[][2],int adjm[][size],int edge)
         int from=em[i][0];
         int to=em[i][1];
         adjm[from][to]=1;
-        adjm[to][from]=1;
     }
     return v;
 }

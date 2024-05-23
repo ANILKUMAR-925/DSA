@@ -74,9 +74,9 @@ node* inserte(node* head)
 }
 int lenll(node* head)
 {
-    int i;
+    int i=0;
     if(head==NULL)
-        i=0;
+        return i;
     else
     {
         while(head!=NULL)
@@ -89,13 +89,91 @@ int lenll(node* head)
 }
 node* insertm(node* head)
 {
-    int pos,i,len=lenll(head);
-    printf("enter the position you want to insert (1 to %d) : ",len+1);
+    int pos,i=1,len=lenll(head);
+    printf("\nenter the position you want to insert (1 to %d) : ",len+1);
     scanf("%d",&pos);
     if(pos==1)
         head=insertb(head);
     else if(pos==len+1)
         head=inserte(head);
+    else if(pos<=0 || pos>len+1)
+        printf("enter the position between 1 to %d\n",len+1);
+    else
+    {
+        node *prev,*temp=head,*newnode;
+        newnode=(node*)malloc(sizeof(node));
+        printf("enter the data to insert : ");
+        scanf("%d",&newnode->data);
+        while(i<pos)
+        {
+            prev=temp;
+            temp=temp->next;
+            i++;
+        }
+        prev->next=newnode;
+        newnode->next=temp;
+    }
+    return head;
+}
+node* deleteb(node* head)
+{
+    if(head==NULL)
+        printf("\nqueue underflow\n");
+    else
+    {
+        node* temp=head;
+        head=head->next;
+        free(temp);
+    }
+    return head;
+}
+node* deletee(node* head)
+{
+    node* temp=head;
+    if(head==NULL)
+        printf("\nqueue underflow\n");
+    else if(temp->next==NULL)
+    {
+        free(temp);
+        head=NULL;
+    }
+    else
+    {
+        node* prev;
+        while(temp->next!=NULL)
+        {
+            prev=temp;
+            temp=temp->next;
+        }
+        prev->next=NULL;
+        free(temp);
+    }
+    return head;
+}
+node* deletem(node* head)
+{
+    int i=1,pos,len=lenll(head);
+    printf("\nenter the position you want to delete (1 to %d) : ",len);
+    scanf("%d",&pos);
+    if(pos==1)
+        head=deleteb(head);
+    else if(pos==len)
+        head=deletee(head);
+    else if(pos<1 || pos>len)
+        printf("enter the position between 1 to %d\n",len);
+    else
+    {
+        node* temp=head,*prev;
+        while(i<pos)
+        {
+            prev=temp;
+            temp=temp->next;
+            i++;
+        }
+        prev->next=temp->next;
+        free(temp);
+    }
+    return head;
 }
 int main()
 {
@@ -104,7 +182,7 @@ int main()
     int op;
     while(1)
     {
-        printf("\nenter 1 to DISPLAY :\nenter 2 to INSERT :\nenter 3 to EXIT : ");
+        printf("\nenter 1 to DISPLAY :\nenter 2 to INSERT :\nenter 3 to DELETE :\nenter 4 to EXIT : ");
         scanf("%d",&op);
         switch(op)
         {
@@ -115,6 +193,9 @@ int main()
                 head=insertm(head);
                 break;
             case 3:
+                head=deletem(head);
+                break;
+            case 4:
                 exit(0);
                 break;
             default :
