@@ -48,7 +48,7 @@ void heapify(int* arr,int n,int parent)
 void heap_sort(int* arr,int n)
 {
     int i;
-    for(i=(n/2)-1;i<=0;i--)
+    for(i=(n/2)-1;i>=0;i--)
     {
         heapify(arr,n,i);
     }
