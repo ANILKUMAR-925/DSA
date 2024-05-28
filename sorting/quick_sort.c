@@ -29,12 +29,12 @@ int findindex(int arr[],int low,int high)
     j=high;
     do
     {
-        //find the element larger than key
+        //find the element larger than key from left side
         while(arr[i]<key)
         {
             i++;
         }
-        //find the element smaller tha the key
+        //find the element smaller tha the key from right side
         while(arr[j]>key)
         {
             j--;
