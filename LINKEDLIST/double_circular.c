@@ -196,6 +196,7 @@ int main()
 {
     node* head=NULL;
     int op;
+    head=createll(head);
     while(1)
     {
         printf("enter 1 to DISPLAY :\nenter 2 to INSERT :\nenter 3 to DELETE :\nenter 4 to EXIT : ");
